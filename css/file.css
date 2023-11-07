@@ -1,0 +1,40 @@
+body {
+  background: #dcd6f7;
+  font-family: "Edu TAS Beginner", cursive;
+  font-style: italic;
+  color: #424874;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 235px;
+}
+
+.countdown-clock {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 50px;
+  margin-bottom: 150px;
+}
+
+.text-input {
+  font-size: 30px;
+}
+
+p {
+  margin: 0px;
+}
+
+.dobby-image{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    visibility: hidden;
+}
