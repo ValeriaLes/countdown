@@ -1,10 +1,8 @@
 const image = document.querySelector(".dobby-image");
 const daysText = document.querySelector(".day");
-const hoursText = document.querySelector(".hour")
-const minutesText = document.querySelector(".minute")
-const secondsText = document.querySelector(".second")
-
-
+const hoursText = document.querySelector(".hour");
+const minutesText = document.querySelector(".minute");
+const secondsText = document.querySelector(".second");
 
 setTimeout(dobbyIsShown, 2000);
 
@@ -12,27 +10,34 @@ function dobbyIsShown() {
   image.style.visibility = "visible";
 }
 
-const dateNow = new Date();
-const dateThen = new Date("2023-12-15");
+setInterval(() => {
+  const currentTime = Date.now();
+  const futureTime = new Date("2023-12-15").getTime();
+  const timeLeft = futureTime - currentTime;
 
-const timeLeft = dateThen - dateNow;
+  const { days, hours, mins, secs } = getTimeComponents(timeLeft);
 
+  daysText.textContent = days;
+  hoursText.textContent = hours;
+  minutesText.textContent = mins;
+  secondsText.textContent = secs;
 
-console.log(new Date(timeLeft).toString())
+  console.log(`${days}:${hours}:${mins}:${secs}`);
+}, 1000);
 
-function msToTime(timeLeft) {
-  let seconds = (timeLeft / 1000).toFixed(1);
-  let minutes = (timeLeft / (1000 * 60)).toFixed(1);
-  let hours = (timeLeft / (1000 * 60 * 60)).toFixed(1);
-  let days = (timeLeft / (1000 * 60 * 60 * 24)).toFixed(1);
-
- 
+function pad(value) {
+  return String(value).padStart(2, "0");
 }
-msToTime()
 
+function getTimeComponents(time) {
+  const days = pad(
+    Math.floor((time % (1000 * 60 * 60 * 24 * 60)) / (1000 * 60 * 60 * 24))
+  );
+  const hours = pad(
+    Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  );
+  const mins = pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+  const secs = pad(Math.floor((time % (1000 * 60)) / 1000));
 
-
-// daysText.textContent = days;
-//  hoursText.textContent = hours;
-//  minutesText.textContent = minutes;
-//  secondsText.textContent = seconds;
+  return { days, hours, mins, secs };
+}
